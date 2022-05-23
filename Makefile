@@ -1,4 +1,4 @@
-IMAGE := base-repository-template
+IMAGE := bug-tracker-client
 VERSION := 0.0.1
 REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}:${VERSION}
 
