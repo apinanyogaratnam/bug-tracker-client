@@ -4,9 +4,10 @@ REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}:${VERSION}
 
 build:
 	docker build -t ${IMAGE} .
+	# docker buildx build --platform=linux/amd64 -t ${IMAGE} .
 
 run:
-	docker run -d -p 8000:8000 ${IMAGE}
+	docker run -d -p 3000:3000 ${IMAGE}
 
 exec:
 	docker exec -it $(sha) /bin/sh
