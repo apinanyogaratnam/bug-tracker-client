@@ -1,12 +1,29 @@
 import { useRouter } from 'next/router';
+import useProject from '../../components/hooks/useProject';
 
 export default function Project() {
     const router = useRouter();
     const { id } = router.query;
+    const { project, loading } = useProject(id);
+
     return (
         <div>
             <h1>Project</h1>
-            <p>Project id: {id}</p>
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div>
+                    <p>Id: {project.project_id}</p>
+                    <p>Name: {project.name}</p>
+                    <p>Description: {project.description}</p>
+                    <p>User id: {project.user_id}</p>
+                    <p>Administrator_id: {project.administrator_id}</p>
+                    <p>Co Administrator Ids: {project.co_administrator_ids}</p>
+                    <p>Member Ids: {project.member_ids}</p>
+                    <p>Created at: {project.created_at}</p>
+                    {console.log(project)}
+                </div>
+            )}
         </div>
     );
 }
