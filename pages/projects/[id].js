@@ -21,7 +21,6 @@ export default function Project() {
                     <p>Co Administrator Ids: {project.co_administrator_ids}</p>
                     <p>Member Ids: {project.member_ids}</p>
                     <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
-                    {console.log(project)}
                 </div>
             )}
         </div>
