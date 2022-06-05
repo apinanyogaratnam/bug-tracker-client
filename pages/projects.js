@@ -13,7 +13,7 @@ export default function Projects() {
                     {projects.map((project, index) => (
                         <div key={index}>
                             <Link href="/projects/[project_id]" as={`/projects/${project.id}`}>
-                                <a>{project.name}</a>
+                                <button>{project.name}</button>
                             </Link>
                         </div>
                     ))}
