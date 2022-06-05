@@ -12,7 +12,6 @@ export default function Projects() {
                 <div>
                     {projects.map((project, index) => (
                         <div key={index}>
-                            {console.log(project.project_id)}
                             <Link href={`/projects/${project.project_id}`}>
                                 <button>
                                     <div>
