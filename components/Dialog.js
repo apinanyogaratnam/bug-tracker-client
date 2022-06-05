@@ -1,4 +1,16 @@
+import styles from '../styles/Dialog.module.css';
+import { useState } from 'react';
+
 export default function Dialog({isOpened = false, closeDialog}) {
+    const [projectName, setProjectName] = useState('');
+    const [projectDescription, setProjectDescription] = useState('');
+
+    const closeDialogInner = () => {
+        closeDialog();
+        setProjectName('');
+        setProjectDescription('');
+    }
+
     return (
         <div>
             { isOpened && (
@@ -11,21 +23,16 @@ export default function Dialog({isOpened = false, closeDialog}) {
                     background: 'rgba(0,0,0,0.5)',
                 }}>
                     <dialog
+                        className={styles.dialog}
                         style={{
                             zIndex: '1',
                         }} open={isOpened}>
-                        <form>
-                            <label>
-                                Name:
-                                <input type="text" />
-                            </label>
-                            <label>
-                                Description:
-                                <input type="text" />
-                            </label>
-                            <button onClick={closeDialog}>Submit</button>
+                        <form className={styles.form}>
+                            <input className={styles.input} type="text" placeholder="Project Name" value={projectName} onChange={(event) => setProjectName(event.target.value)} />
+                            <input className={styles.input} type="text" placeholder="Description" value={projectDescription} onChange={(event) => setProjectDescription(event.target.value)}/>
+                            <button onClick={closeDialogInner}>Submit</button>
                         </form>
-                        <button onClick={closeDialog}>Close</button>
+                        <button onClick={closeDialogInner}>Close</button>
                     </dialog>
                 </div>
             )}
