@@ -17,7 +17,7 @@ export default function useProjects(user_id) {
 
     useEffect(() => {
         fetchData(user_id);
-    }, [user_id]);
+    }, [projects, user_id]);
 
     return {
         projects,
