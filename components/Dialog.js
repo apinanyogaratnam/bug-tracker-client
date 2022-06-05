@@ -1,4 +1,4 @@
-export default function Dialog({isOpened = false}) {
+export default function Dialog({isOpened = false, closeDialog}) {
     return (
         <div>
             { isOpened && (
@@ -25,6 +25,7 @@ export default function Dialog({isOpened = false}) {
                             </label>
                             <button>Submit</button>
                         </form>
+                        <button onClick={closeDialog}>Close</button>
                     </dialog>
                 </div>
             )}
