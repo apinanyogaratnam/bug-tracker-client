@@ -35,5 +35,14 @@ push-image:
 	docker push ${REGISTRY_URL}
 	docker push ${REGISTRY_URL_LATEST}
 
+tag-git:
+	git tag -m "v${VERSION}" v${VERSION}
+
+push-git-tag:
+	git push --tags
+
+workflow:
+	make tag-git && make push-git-tag
+
 all:
 	make build && make auth && make tag && make push
