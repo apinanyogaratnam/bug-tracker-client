@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import useProjects from '../components/hooks/useProjects';
+import useProjects from '../../components/hooks/useProjects';
 
 export default function Projects() {
     const { projects, loading } = useProjects(1);
@@ -12,8 +12,14 @@ export default function Projects() {
                 <div>
                     {projects.map((project, index) => (
                         <div key={index}>
-                            <Link href="/projects/[project_id]" as={`/projects/${project.id}`}>
-                                <button>{project.name}</button>
+                            {console.log(project.project_id)}
+                            <Link href={`/projects/${project.project_id}`}>
+                                <button>
+                                    <div>
+                                        <h2>{project.name}</h2>
+                                        <p>{project.description}</p>
+                                    </div>
+                                </button>
                             </Link>
                         </div>
                     ))}
