@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  bug-tracker-client:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./volumes/bug-tracker-client:/app
+    environment:
+      - PORT=3000
+    restart: always
