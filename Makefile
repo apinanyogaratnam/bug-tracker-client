@@ -1,6 +1,7 @@
 IMAGE := bug-tracker-client
 VERSION := 0.0.1
 REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}:${VERSION}
+REGISTRY_URL_LATEST := ghcr.io/apinanyogaratnam/${IMAGE}:latest
 
 start:
 	npm run dev
@@ -22,9 +23,17 @@ tag:
 	docker tag ${IMAGE} ${REGISTRY_URL}
 	git tag -m "v${VERSION}" v${VERSION}
 
+tag-image:
+	docker tag ${IMAGE} ${REGISTRY_URL}
+	docker tag ${IMAGE} ${REGISTRY_URL_LATEST}
+
 push:
 	docker push ${REGISTRY_URL}
 	git push --tags
+
+push-image:
+	docker push ${REGISTRY_URL}
+	docker push ${REGISTRY_URL_LATEST}
 
 all:
 	make build && make auth && make tag && make push
