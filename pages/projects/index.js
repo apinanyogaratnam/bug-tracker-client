@@ -3,6 +3,7 @@ import useProjects from '../../components/hooks/useProjects';
 import { useState } from 'react';
 import Dialog from '../../components/Dialog';
 import styles from '../../styles/Projects.module.css';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 export default function Projects() {
     const user_id = 1;
@@ -34,8 +35,9 @@ export default function Projects() {
                                 </Link>
                             </div>
                         ))}
-                        <button className={styles['project-container']} onClick={() => setIsDialogOpen(!isDialogOpen)}>
-                            New Project
+                        <button className={styles['new-project-container']} onClick={() => setIsDialogOpen(!isDialogOpen)}>
+                            <AiOutlinePlusCircle className={styles['plus-icon']} />
+                            <h4>Create Project</h4>
                         </button>
                     </div>
                 </div>
