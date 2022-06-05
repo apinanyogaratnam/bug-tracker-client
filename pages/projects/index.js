@@ -22,6 +22,9 @@ export default function Projects() {
                             </Link>
                         </div>
                     ))}
+                    <button>
+                        New Project
+                    </button>
                 </div>
             )}
         </div>
