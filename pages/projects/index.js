@@ -27,7 +27,7 @@ export default function Projects() {
                                 <Link href={`/projects/${project.project_id}`}>
                                     <button>
                                         <div>
-                                            <h2>{project.name}</h2>
+                                            <h2 className={styles['project-name']}>{project.name}</h2>
                                             <p>{project.description}</p>
                                         </div>
                                     </button>

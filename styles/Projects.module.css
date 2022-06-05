@@ -21,7 +21,13 @@
 
 .project-container {
     display: flex;
+    flex-direction: row;
     width: 200px;
     height: 120px;
     margin: 10px;
+}
+
+.project-name {
+    min-width: 200px;
+    height: 100%;
 }
