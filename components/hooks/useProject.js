@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function useProjects(project_id) {
+export default function useProject(project_id) {
     const [project, setProject] = useState([]);
     const [loading, setLoading] = useState(true);
 
