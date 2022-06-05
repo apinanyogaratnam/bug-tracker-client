@@ -9,17 +9,15 @@ export default function Projects() {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                <ul>
+                <div>
                     {projects.map((project, index) => (
                         <div key={index}>
-                            <li>
-                                <Link href="/projects/[project_id]" as={`/projects/${project.id}`}>
-                                    <a>{project.name}</a>
-                                </Link>
-                            </li>
+                            <Link href="/projects/[project_id]" as={`/projects/${project.id}`}>
+                                <a>{project.name}</a>
+                            </Link>
                         </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
