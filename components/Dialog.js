@@ -1,9 +1,31 @@
 import styles from '../styles/Dialog.module.css';
 import { useState } from 'react';
+import axios from 'axios';
 
-export default function Dialog({isOpened = false, closeDialog}) {
+export default function Dialog({isOpened = false, closeDialog, user_id}) {
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
+
+    const createProject = async (user_id) => {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+        try {
+            await axios.post(`${API_URL}/projects`, {
+                name: projectName,
+                description: projectDescription,
+                user_id: user_id,
+            });
+        } catch (error) {
+            console.log(error);
+            alert('Error creating project');
+        }
+    }
+
+    const createProjectSubmit = (e) => {
+        e.preventDefault();
+        createProject(user_id);
+        closeDialog();
+    }
 
     const closeDialogInner = () => {
         closeDialog();
@@ -30,7 +52,7 @@ export default function Dialog({isOpened = false, closeDialog}) {
                         <form className={styles.form}>
                             <input className={styles.input} type="text" placeholder="Project Name" value={projectName} onChange={(event) => setProjectName(event.target.value)} />
                             <input className={styles.input} type="text" placeholder="Description" value={projectDescription} onChange={(event) => setProjectDescription(event.target.value)}/>
-                            <button onClick={closeDialogInner}>Submit</button>
+                            <button onClick={createProjectSubmit}>Submit</button>
                         </form>
                         <button onClick={closeDialogInner}>Close</button>
                     </dialog>

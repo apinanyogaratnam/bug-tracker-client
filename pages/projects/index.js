@@ -5,7 +5,8 @@ import Dialog from '../../components/Dialog';
 import styles from '../../styles/Projects.module.css';
 
 export default function Projects() {
-    const { projects, loading } = useProjects(1);
+    const user_id = 1;
+    const { projects, loading } = useProjects(user_id);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
     const closeDialog = () => {
@@ -19,7 +20,7 @@ export default function Projects() {
                 <p>Loading...</p>
             ) : (
                 <div>
-                    <Dialog isOpened={isDialogOpen} closeDialog={closeDialog} />
+                    <Dialog isOpened={isDialogOpen} closeDialog={closeDialog} user_id={user_id} />
                     <div className={styles['projects-container']}>
                         {projects.map((project, index) => (
                             <div key={index} className={styles['project-container']}>
