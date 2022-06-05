@@ -16,7 +16,7 @@ export default function useProject(project_id) {
     }
 
     useEffect(() => {
-        fetchData(user_id);
+        fetchData(project_id);
     }, [project, project_id]);
 
     return {
