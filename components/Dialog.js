@@ -23,7 +23,7 @@ export default function Dialog({isOpened = false, closeDialog}) {
                                 Description:
                                 <input type="text" />
                             </label>
-                            <button>Submit</button>
+                            <button onClick={closeDialog}>Submit</button>
                         </form>
                         <button onClick={closeDialog}>Close</button>
                     </dialog>
