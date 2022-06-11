@@ -34,7 +34,7 @@ export default function Project() {
         updateCards(items);
     };
 
-    if (!project) return <p>Maintenance Mode. Check back again soon.</p>;
+    if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
     return (
         <div>
