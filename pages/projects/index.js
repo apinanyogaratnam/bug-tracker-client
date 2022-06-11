@@ -14,6 +14,8 @@ export default function Projects() {
         setIsDialogOpen(false);
     }
 
+    if (!projects) return <p>Currently experiencing issues. Please check again soon.</p>;
+
     return (
         <div className={styles['main-container']}>
             <h1>Projects</h1>
