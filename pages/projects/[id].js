@@ -36,53 +36,59 @@ export default function Project() {
 
     return (
         <div>
-            <h1>Project</h1>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <>
+            { project.length === 0 ? <p>Maintenance Mode</p> :  (
                 <div>
-                    <p>Id: {project.project_id}</p>
-                    <p>Name: {project.name}</p>
-                    <p>Description: {project.description}</p>
-                    <p>User id: {project.user_id}</p>
-                    <p>Administrator_id: {project.administrator_id}</p>
-                    <p>Co Administrator Ids: {project.co_administrator_ids}</p>
-                    <p>Member Ids: {project.member_ids}</p>
-                    <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
+                    <h1>Project</h1>
+                    <div>
+                        {loading ? (
+                            <p>Loading...</p>
+                        ) : (
+                            <>
+                            <div>
+                                <p>Id: {project.project_id}</p>
+                                <p>Name: {project.name}</p>
+                                <p>Description: {project.description}</p>
+                                <p>User id: {project.user_id}</p>
+                                <p>Administrator_id: {project.administrator_id}</p>
+                                <p>Co Administrator Ids: {project.co_administrator_ids}</p>
+                                <p>Member Ids: {project.member_ids}</p>
+                                <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <h3>TODO:</h3>
+                                    <DragDropContext onDragEnd={handleOnDragEnd}>
+                                        <Droppable droppableId="cards">
+                                            {(provided) => (
+                                                <ul {...provided.droppableProps} ref={provided.innerRef}>
+                                                    {cards.map((card, index) => (
+                                                        <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
+                                                            {(provided) => (
+                                                                <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                    <div style={{backgroundColor: 'steelblue'}}>
+                                                                        <p>{card.title}</p>
+                                                                    </div>
+                                                                </li>
+                                                            )}
+                                                        </Draggable>
+                                                    ))}
+                                                    {provided.placeholder}
+                                                </ul>
+                                            )}
+                                        </Droppable>
+                                    </DragDropContext>
+                                </div>
+                                <div>
+                                    IN PROGRESS:
+                                </div>
+                                <div>
+                                    DONE:
+                                </div>
+                            </div>
+                            </>
+                        )}
+                    </div>
                 </div>
-                <div>
-                    <div>
-                        <h3>TODO:</h3>
-                        <DragDropContext onDragEnd={handleOnDragEnd}>
-                            <Droppable droppableId="cards">
-                                {(provided) => (
-                                    <ul {...provided.droppableProps} ref={provided.innerRef}>
-                                        {cards.map((card, index) => (
-                                            <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
-                                                {(provided) => (
-                                                    <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                        <div style={{backgroundColor: 'steelblue'}}>
-                                                            <p>{card.title}</p>
-                                                        </div>
-                                                    </li>
-                                                )}
-                                            </Draggable>
-                                        ))}
-                                        {provided.placeholder}
-                                    </ul>
-                                )}
-                            </Droppable>
-                        </DragDropContext>
-                    </div>
-                    <div>
-                        IN PROGRESS:
-                    </div>
-                    <div>
-                        DONE:
-                    </div>
-                </div>
-                </>
             )}
         </div>
     );
