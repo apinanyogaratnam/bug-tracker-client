@@ -16,7 +16,7 @@ export default function useProjects(user_id) {
             setLoading(false);
         }
         fetchData();
-    }, [user_id]);
+    }, [projects, user_id]);
 
     return {
         projects,
