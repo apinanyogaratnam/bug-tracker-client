@@ -18,6 +18,8 @@ export default function Dialog({isOpened = false, closeDialog, user_id}) {
         } catch (error) {
             console.log(error);
             alert('Error creating project');
+            setProjectName('');
+            setProjectDescription('');
         }
     }
 
