@@ -12,7 +12,12 @@ export default function useProject(project_id) {
             response = await axios.get(`${API_URL}/project/${project_id}`);
         } catch (error) {
             console.log(error);
-            setProject([]);
+            if (error.response || error.request) {
+                setProject([]);
+                setLoading(false);
+                return;
+            }
+            setProject(undefined);
             setLoading(false);
             return;
         }
