@@ -34,9 +34,11 @@ export default function Project() {
         updateCards(items);
     };
 
+    if (!project) return <p>Maintenance Mode. Check back again soon.</p>;
+
     return (
         <div>
-            { project.length === 0 ? <p>Maintenance Mode</p> :  (
+            { project.length === 0 ? <p>Project Does not Exist</p> : (
                 <div>
                     <h1>Project</h1>
                     <div>
