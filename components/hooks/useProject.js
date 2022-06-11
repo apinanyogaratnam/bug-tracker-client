@@ -7,9 +7,15 @@ export default function useProject(project_id) {
 
     const fetchData = async (project_id) => {
         const API_URL = process.env.NEXT_PUBLIC_API_URL;
-        const response = await axios.get(
-            `${API_URL}/project/${project_id}`
-        )
+        let response;
+        try {
+            response = await axios.get(`${API_URL}/project/${project_id}`);
+        } catch (error) {
+            console.log(error);
+            setProject([]);
+            setLoading(false);
+            return;
+        }
         const data = await response.data;
         setProject(data);
         setLoading(false);
