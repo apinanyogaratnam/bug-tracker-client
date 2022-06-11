@@ -23,7 +23,7 @@ export default function useProject(project_id) {
 
     useEffect(() => {
         fetchData(project_id);
-    }, [project, project_id]);
+    }, [project_id]);
 
     return {
         project,
