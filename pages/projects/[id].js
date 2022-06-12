@@ -99,8 +99,9 @@ export default function Project() {
                                                                         <Draggable key={el.id} index={index} draggableId={el.id}>
                                                                             {(provided) => {
                                                                                 return (
-                                                                                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                                                    <div ref={provided.innerRef} {...provided.draggableProps}>
                                                                                         {el.name}
+                                                                                        <span {...provided.dragHandleProps}>::</span>
                                                                                     </div>
                                                                                 )
                                                                             }}
