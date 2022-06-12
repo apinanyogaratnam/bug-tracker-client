@@ -31,15 +31,20 @@ export default function Project() {
         name: 'an item',
     }
 
+    const item2 = {
+        id: v4(),
+        name: 'an item',
+    }
+
     const [cards, updateCards] = useState(exampleCards);
     const [state, setState] = useState({
         "todo": {
             "title": "To Do",
-            "items": [],
+            "items": [item],
         },
         "inProgress": {
             "title": "In Progress",
-            "items": [],
+            "items": [item2],
         },
         "done": {
             "title": "Done",
@@ -89,7 +94,19 @@ export default function Project() {
                                                     <Droppable droppableId={key}>
                                                         {(provided) => (
                                                             <div className={styles['droppable-column']} ref={provided.innerRef } {...provided.droppableProps}>
-
+                                                                {data.items.map((el, index) => {
+                                                                    return (
+                                                                        <Draggable key={el.id} index={index} draggableId={el.id}>
+                                                                            {(provided) => {
+                                                                                return (
+                                                                                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                                                        {el.name}
+                                                                                    </div>
+                                                                                )
+                                                                            }}
+                                                                        </Draggable>
+                                                                    )
+                                                                })}
                                                             </div>
                                                         )}
                                                     </Droppable>
