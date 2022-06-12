@@ -54,11 +54,16 @@ export default function Project() {
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) return;
-        const items = Array.from(cards);
-        const [reorderItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderItem);
-
-        updateCards(items);
+        if (result.destination.index === result.source.index && result.destination.droppableId === result.source.droppableId) return;
+        let source= result.source;
+        let destination = result.destination;
+        const itemCopy = {...state[source.droppableId].items[source.index]};
+        setState(prev => {
+            prev = {...prev};
+            prev[source.droppableId].items.splice(source.index, 1);
+            prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
+            return prev;
+        })
     };
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
