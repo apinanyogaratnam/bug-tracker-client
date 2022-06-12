@@ -17,6 +17,11 @@ export default function useUser(user) {
                 setFetchedLoading(false);
             } catch (error) {
                 console.log(error);
+                if (!error.response) {
+                    setFetchedUser(null);
+                    setFetchedLoading(false);
+                    return;
+                }
                 if (error.response.status === 404) {
                     // User not found, create new user
                     const { data } = await axios.post(`${API_URL}/user`, { email, username: user.name, external_user_id: user.sub, image: user.picture});
