@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setProjects } from '../../redux/slices/projectsSlice';
 
 export default function useProjects(user_id) {
-    const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
+    const projects = useSelector(state => state.projects);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,21 +17,21 @@ export default function useProjects(user_id) {
                     `${API_URL}/projects?user_id=${user_id}`
                 )
                 const data = await response.data;
-                setProjects(data);
+                dispatch(setProjects(data));
                 setLoading(false);
             } catch (error) {
                 console.log(error);
                 if (error.response.status !== 0) {
-                    setProjects([]);
+                    dispatch(setProjects([]));
                     setLoading(false);
                     return;
                 }
-                setProjects(null);
+                dispatch(setProjects(null));
                 setLoading(false);
             }
         }
         fetchData();
-    }, [projects, user_id]);
+    }, [dispatch, user_id]);
 
     return {
         projects,
