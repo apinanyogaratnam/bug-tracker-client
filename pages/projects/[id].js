@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import useProject from '../../components/hooks/useProject';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useState } from 'react';
+import _ from 'lodash';
 
 export default function Project() {
     const router = useRouter();
@@ -71,42 +72,21 @@ export default function Project() {
                                 <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
                             </div>
                             <div>
-                                <div>
-                                    <h3>TODO:</h3>
-                                    <DragDropContext onDragEnd={handleOnDragEnd}>
-                                        {Object.keys(state).map((data, key) => {
-                                            return (
-                                                <div key={key}>
-                                                    <h3>{data.title}</h3>
-                                                    <Droppable droppableId="cards">
-                                                        {(provided) => (
-                                                            <ul {...provided.droppableProps} ref={provided.innerRef}>
-                                                                {cards.map((card, index) => (
-                                                                    <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
-                                                                        {(provided) => (
-                                                                            <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                                                <div style={{backgroundColor: 'steelblue'}}>
-                                                                                    <p>{card.title}</p>
-                                                                                </div>
-                                                                            </li>
-                                                                        )}
-                                                                    </Draggable>
-                                                                ))}
-                                                                {provided.placeholder}
-                                                            </ul>
-                                                        )}
-                                                    </Droppable>
-                                                </div>
-                                            );
-                                        })}
-                                    </DragDropContext>
-                                </div>
-                                <div>
-                                    IN PROGRESS:
-                                </div>
-                                <div>
-                                    DONE:
-                                </div>
+                                <DragDropContext onDragEnd={handleOnDragEnd}>
+                                    {_.map(state, (data, key) => {
+                                        console.log(data);
+                                        return (
+                                            <div key={key}>
+                                                <h3>{data.title}</h3>
+                                                <Droppable droppableId="cards">
+                                                    {(provided) => (
+                                                        <div>hi</div>
+                                                    )}
+                                                </Droppable>
+                                            </div>
+                                        );
+                                    })}
+                                </DragDropContext>
                             </div>
                             </>
                         )}
