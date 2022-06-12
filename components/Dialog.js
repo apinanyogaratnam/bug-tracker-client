@@ -10,6 +10,8 @@ export default function Dialog({isOpened = false, closeDialog, user_id}) {
     const dispatch = useDispatch();
 
     const createProject = async (user_id) => {
+        if (!user_id) return;
+
         const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
         try {
