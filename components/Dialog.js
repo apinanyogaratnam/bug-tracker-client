@@ -43,7 +43,7 @@ export default function Dialog({isOpened = false, closeDialog, user_id}) {
         <div>
             { isOpened && (
                 <div style={{
-                    position: 'absolute',
+                    position: 'fixed',
                     top: '0',
                     left: '0',
                     width: '100%',
