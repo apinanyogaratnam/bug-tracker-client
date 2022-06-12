@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import useProject from '../../components/hooks/useProject';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useState } from 'react';
+import styles from '../../styles/Project.module.css';
 import _ from 'lodash';
 
 export default function Project() {
@@ -73,19 +74,23 @@ export default function Project() {
                             </div>
                             <div>
                                 <DragDropContext onDragEnd={handleOnDragEnd}>
-                                    {_.map(state, (data, key) => {
-                                        console.log(data);
-                                        return (
-                                            <div key={key}>
-                                                <h3>{data.title}</h3>
-                                                <Droppable droppableId="cards">
-                                                    {(provided) => (
-                                                        <div>hi</div>
-                                                    )}
-                                                </Droppable>
-                                            </div>
-                                        );
-                                    })}
+                                    <div className={styles['columns-container']}>
+                                        {_.map(state, (data, key) => {
+                                            console.log(data);
+                                            return (
+                                                <div key={key}>
+                                                    <h3>{data.title}</h3>
+                                                    <Droppable droppableId={key}>
+                                                        {(provided) => (
+                                                            <div className={styles['droppable-column']} ref={provided.innerRef } {...provided.droppableProps}>
+
+                                                            </div>
+                                                        )}
+                                                    </Droppable>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
                                 </DragDropContext>
                             </div>
                             </>
