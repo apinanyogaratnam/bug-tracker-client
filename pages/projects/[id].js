@@ -108,6 +108,7 @@ export default function Project() {
                                                                         </Draggable>
                                                                     )
                                                                 })}
+                                                                {provided.placeholder}
                                                             </div>
                                                         )}
                                                     </Droppable>
