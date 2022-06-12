@@ -8,7 +8,7 @@ export default function useUser(user) {
 
     useEffect(() => {
         const fetchData = async (user) => {
-            if (!user || error) return { fetchedUser, fetchedLoading };
+            if (!user) return { fetchedUser, fetchedLoading };
             const email = user.email;
             const API_URL = process.env.NEXT_PUBLIC_API_URL;
             try {
