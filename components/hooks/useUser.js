@@ -17,17 +17,22 @@ export default function useUser(user) {
                 setFetchedLoading(false);
             } catch (error) {
                 console.log(error);
-                if (error.response.status != 0) {
+                if (error.response.status === 404) {
+                    // User not found, create new user
+                    const { data } = await axios.post(`${API_URL}/user`, { email, username: user.name, external_user_id: user.sub, image: user.picture});
+                    setFetchedUser(data);
+                    setFetchedLoading(false);
+                } else if (error.response.status != 0) {
                     setFetchedUser({});
                     setFetchedLoading(false);
                     return;
                 }
                 setFetchedUser(null);
-                setLoading(false);
+                setFetchedLoading(false);
             }
         }
         fetchData(user);
-    }, [user]);
+    }, [user, fetchedUser, fetchedLoading]);
 
     return {
         fetchedUser,
