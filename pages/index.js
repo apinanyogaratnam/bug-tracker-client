@@ -23,7 +23,6 @@ export default function Home() {
     }
 
     if (user && user != {}) {
-      console.log('getting user id from fetched data', user);
       dispatch(setUserId(user.internal_user_id));
       router.push('/projects');
     }
