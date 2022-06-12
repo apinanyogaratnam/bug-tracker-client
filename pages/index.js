@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router';
 import useUser from '../components/hooks/useUser';
@@ -9,6 +9,7 @@ import { useUser as useAuth0User } from '@auth0/nextjs-auth0';
 
 export default function Home() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { user: auth0User, error } = useAuth0User();
   const { fetchedUser: user, fetchedLoading: loading } = useUser(auth0User);
 
@@ -22,7 +23,8 @@ export default function Home() {
     }
 
     if (user && user != {}) {
-      setUserId(user.user_id);
+      console.log('getting user id from fetched data', user);
+      dispatch(setUserId(user.internal_user_id));
       router.push('/projects');
     }
   };
