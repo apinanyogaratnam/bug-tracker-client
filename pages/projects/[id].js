@@ -4,6 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useState } from 'react';
 import styles from '../../styles/Project.module.css';
 import _ from 'lodash';
+import { v4 } from 'uuid';
 
 export default function Project() {
     const router = useRouter();
@@ -24,6 +25,11 @@ export default function Project() {
             title: 'Bug 3',
         },
     ]
+
+    const item = {
+        id: v4(),
+        name: 'an item',
+    }
 
     const [cards, updateCards] = useState(exampleCards);
     const [state, setState] = useState({
