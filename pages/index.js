@@ -26,10 +26,14 @@ export default function Home() {
     router.push('/projects');
   }
 
+  const handleAuthentication = () => {
+    router.push('/api/auth/login');
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Bug Tracker</h1>
-      <a href="/api/auth/login">Login or Signup</a>
+      <button onClick={handleAuthentication}>Login or Signup</button>
     </div>
   )
 }
