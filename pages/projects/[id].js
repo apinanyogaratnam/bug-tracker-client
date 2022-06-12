@@ -24,6 +24,20 @@ export default function Project() {
     ]
 
     const [cards, updateCards] = useState(exampleCards);
+    const [state, setState] = useState({
+        "todo": {
+            "title": "To Do",
+            "items": [],
+        },
+        "inProgress": {
+            "title": "In Progress",
+            "items": [],
+        },
+        "done": {
+            "title": "Done",
+            "items": [],
+        },
+    });
 
     const handleOnDragEnd = (result) => {
         if (!result.destination) return;
@@ -60,24 +74,31 @@ export default function Project() {
                                 <div>
                                     <h3>TODO:</h3>
                                     <DragDropContext onDragEnd={handleOnDragEnd}>
-                                        <Droppable droppableId="cards">
-                                            {(provided) => (
-                                                <ul {...provided.droppableProps} ref={provided.innerRef}>
-                                                    {cards.map((card, index) => (
-                                                        <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
-                                                            {(provided) => (
-                                                                <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                                    <div style={{backgroundColor: 'steelblue'}}>
-                                                                        <p>{card.title}</p>
-                                                                    </div>
-                                                                </li>
-                                                            )}
-                                                        </Draggable>
-                                                    ))}
-                                                    {provided.placeholder}
-                                                </ul>
-                                            )}
-                                        </Droppable>
+                                        {Object.keys(state).map((data, key) => {
+                                            return (
+                                                <div key={key}>
+                                                    <h3>{data.title}</h3>
+                                                    <Droppable droppableId="cards">
+                                                        {(provided) => (
+                                                            <ul {...provided.droppableProps} ref={provided.innerRef}>
+                                                                {cards.map((card, index) => (
+                                                                    <Draggable key={card.id} draggableId={card.id.toString()} index={index}>
+                                                                        {(provided) => (
+                                                                            <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                                <div style={{backgroundColor: 'steelblue'}}>
+                                                                                    <p>{card.title}</p>
+                                                                                </div>
+                                                                            </li>
+                                                                        )}
+                                                                    </Draggable>
+                                                                ))}
+                                                                {provided.placeholder}
+                                                            </ul>
+                                                        )}
+                                                    </Droppable>
+                                                </div>
+                                            );
+                                        })}
                                     </DragDropContext>
                                 </div>
                                 <div>
