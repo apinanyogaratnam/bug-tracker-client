@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import useProjects from '../../components/hooks/useProjects';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Dialog from '../../components/Dialog';
 import styles from '../../styles/Projects.module.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 export default function Projects() {
-    const user_id = 1;
+    const { user_id } = useSelector(state => state.user);
     const { projects, loading } = useProjects(user_id);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
 
