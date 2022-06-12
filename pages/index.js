@@ -22,7 +22,6 @@ export default function Home() {
     }
 
     if (user && user != {}) {
-      console.log('fetched user', user);
       setUserId(user.user_id);
       router.push('/projects');
     }
