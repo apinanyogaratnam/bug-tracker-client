@@ -13,7 +13,7 @@ export default function useProjects(user_id) {
             if (!user_id) return;
 
             const API_URL = process.env.NEXT_PUBLIC_API_URL;
-            let response;
+
             try {
                 const { data } = await axios.get(`${API_URL}/projects?user_id=${user_id}`);
                 dispatch(setProjects(data));
