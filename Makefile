@@ -3,6 +3,9 @@ VERSION := 0.0.16
 REGISTRY_URL := ghcr.io/apinanyogaratnam/${IMAGE}:${VERSION}
 REGISTRY_URL_LATEST := ghcr.io/apinanyogaratnam/${IMAGE}:latest
 
+depcheck:
+	npx depcheck
+
 start:
 	npm run dev
 
