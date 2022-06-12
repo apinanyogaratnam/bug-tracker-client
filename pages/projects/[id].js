@@ -40,7 +40,7 @@ export default function Project() {
     const [state, setState] = useState({
         "todo": {
             "title": "To Do",
-            "items": [item, item2],
+            "items": [item],
         },
         "inProgress": {
             "title": "In Progress",
