@@ -52,11 +52,9 @@ export default function Project() {
         },
     });
 
-    const handleOnDragEnd = (result) => {
-        if (!result.destination) return;
-        if (result.destination.index === result.source.index && result.destination.droppableId === result.source.droppableId) return;
-        let source= result.source;
-        let destination = result.destination;
+    const handleOnDragEnd = ({ destination, source }) => {
+        if (!destination) return;
+        if (destination.index === source.index && destination.droppableId === source.droppableId) return;
         const itemCopy = {...state[source.droppableId].items[source.index]};
         setState(prev => {
             prev = {...prev};
