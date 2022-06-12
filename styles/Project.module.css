@@ -1,7 +1,13 @@
 .droppable-column {
     width: 100px;
-    height: 50px;
+    height: 100%;
     background-color: grey;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
 }
 
 .columns-container {
@@ -11,4 +17,12 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 1rem;
+}
+
+.column-item {
+    width: 95%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
 }

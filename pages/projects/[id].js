@@ -40,7 +40,7 @@ export default function Project() {
     const [state, setState] = useState({
         "todo": {
             "title": "To Do",
-            "items": [item],
+            "items": [item, item2],
         },
         "inProgress": {
             "title": "In Progress",
@@ -92,7 +92,7 @@ export default function Project() {
                                         {_.map(state, (data, key) => {
                                             console.log(data);
                                             return (
-                                                <div key={key}>
+                                                <div className={styles['column-container']} key={key}>
                                                     <h3>{data.title}</h3>
                                                     <Droppable droppableId={key}>
                                                         {(provided) => (
@@ -102,7 +102,7 @@ export default function Project() {
                                                                         <Draggable key={el.id} index={index} draggableId={el.id}>
                                                                             {(provided) => {
                                                                                 return (
-                                                                                    <div ref={provided.innerRef} {...provided.draggableProps}>
+                                                                                    <div className={styles['column-item']} ref={provided.innerRef} {...provided.draggableProps}>
                                                                                         {el.name}
                                                                                         <span {...provided.dragHandleProps}>::</span>
                                                                                     </div>
