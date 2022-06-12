@@ -103,8 +103,8 @@ export default function Project() {
                                                                             {(provided) => {
                                                                                 return (
                                                                                     <div className={styles['column-item']} ref={provided.innerRef} {...provided.draggableProps}>
-                                                                                        {el.name}
-                                                                                        <span {...provided.dragHandleProps}>::</span>
+                                                                                        <div>{el.name}</div>
+                                                                                        <div {...provided.dragHandleProps}>⁝⁝</div>
                                                                                     </div>
                                                                                 )
                                                                             }}
