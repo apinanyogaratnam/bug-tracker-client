@@ -30,7 +30,7 @@ export default function Dialog({isOpened = false, closeDialog, user_id}) {
     const createProjectSubmit = (e) => {
         e.preventDefault();
         createProject(user_id);
-        closeDialog();
+        closeDialogInner();
     }
 
     const closeDialogInner = () => {
