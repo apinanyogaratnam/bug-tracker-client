@@ -10,6 +10,8 @@ export default function useProjects(user_id) {
 
     useEffect(() => {
         const fetchData = async () => {
+            if (!user_id) return;
+
             const API_URL = process.env.NEXT_PUBLIC_API_URL;
             let response;
             try {
