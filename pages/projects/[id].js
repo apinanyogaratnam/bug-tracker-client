@@ -90,7 +90,6 @@ export default function Project() {
                                 <DragDropContext onDragEnd={handleOnDragEnd}>
                                     <div className={styles['columns-container']}>
                                         {_.map(state, (data, key) => {
-                                            console.log(data);
                                             return (
                                                 <div className={styles['column-container']} key={key}>
                                                     <h3>{data.title}</h3>
