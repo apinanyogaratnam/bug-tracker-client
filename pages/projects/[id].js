@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import useProject from '../../components/hooks/useProject';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../../styles/Project.module.css';
 import _ from 'lodash';
 import { v4 } from 'uuid';
@@ -114,6 +114,21 @@ export default function Project() {
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        const getColumns = async () => {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL;
+            let response;
+            try {
+                response = await axios.get(`${API_URL}/columns?project_id=${id}`);
+                raw_columns = response.data.raw_columns;
+                // TODO: set state
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getColumns();
+    }, [id]);
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
