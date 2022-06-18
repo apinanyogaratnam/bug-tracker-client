@@ -21,6 +21,7 @@ export const projectSlice = createSlice({
 
 export const {
     setProject,
+    setColumns,
 } = projectSlice.actions;
 
 export default projectSlice.reducer;
