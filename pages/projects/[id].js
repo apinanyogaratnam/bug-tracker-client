@@ -102,7 +102,7 @@ export default function Project() {
                                 <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
                             </div>
                             <button>
-                                Create Project
+                                New Column
                                 <AiOutlinePlusCircle />
                             </button>
                             <div>
