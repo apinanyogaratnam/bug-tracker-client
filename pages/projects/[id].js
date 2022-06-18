@@ -29,7 +29,7 @@ export default function Project() {
         if (destination.index === source.index && destination.droppableId === source.droppableId) return;
         const itemCopy = {...state[source.droppableId].items[source.index]};
         setState(prev => {
-            prev = JSON.parse(JSON.stringify(prev));
+            prev = structuredClone(prev);
             prev[source.droppableId].items.splice(source.index, 1);
             prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
             return prev;
