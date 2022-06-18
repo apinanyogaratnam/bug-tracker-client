@@ -71,8 +71,12 @@ export default function Project() {
 
     const createNewTask = async (column_id, column_column_id) => {
         const API_URL = process.env.NEXT_PUBLIC_API_URL;
+        console.log('column column id', column_column_id);
         try {
-            const { data } = await axios.put(`${API_URL}/column/${column_id}/${column_column_id}`);
+            const { data } = await axios.put(`${API_URL}/column/${column_id}/${column_column_id}`, {
+                name: taskName,
+                description: taskDescription,
+            });
             dispatch(setColumns(data.raw_columns));
         } catch (error) {
             console.log(error);
@@ -94,7 +98,7 @@ export default function Project() {
         }
         getColumns();
         if (columns[0]) setState(columns[0].raw_columns);
-    }, [id, columns, dispatch]);
+    }, [dispatch, id]);
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
@@ -158,7 +162,7 @@ export default function Project() {
                                                                         <p>Add a new item</p>
                                                                         <input value={taskName} type="text" onChange={(e) => setTaskName(e.target.value)} />
                                                                         <input value={taskDescription} type="text" onChange={(e) => setTaskDescription(e.target.value)} />
-                                                                        <button onClick={closeDialog}>Add</button>
+                                                                        <button onClick={() => createNewTask(column_id, key)}>Add</button>
                                                                         <button onClick={closeDialog}>close</button>
                                                                     </div>
                                                                 </Dialog>
