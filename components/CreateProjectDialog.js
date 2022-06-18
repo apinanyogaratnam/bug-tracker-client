@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setProjects } from '../redux/slices/projectsSlice';
 
-export default function Dialog({isOpened = false, closeDialog, user_id}) {
+export default function CreateProjectDialog({isOpened = false, closeDialog, user_id}) {
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
     const dispatch = useDispatch();

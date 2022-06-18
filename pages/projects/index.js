@@ -2,7 +2,7 @@ import Link from 'next/link';
 import useProjects from '../../components/hooks/useProjects';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Dialog from '../../components/Dialog';
+import CreateProjectDialog from '../../components/CreateProjectDialog';
 import styles from '../../styles/Projects.module.css';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
@@ -36,7 +36,7 @@ export default function Projects() {
                 <p>Loading...</p>
             ) : (
                 <div>
-                    <Dialog isOpened={isDialogOpen} closeDialog={closeDialog} user_id={user_id} />
+                    <CreateProjectDialog isOpened={isDialogOpen} closeDialog={closeDialog} user_id={user_id} />
                     <div className={styles['projects-container']}>
                         {projects.map((project, index) => (
                             <div key={index} className={styles['project-container']}>
