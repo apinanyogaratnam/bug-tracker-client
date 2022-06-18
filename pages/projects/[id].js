@@ -34,7 +34,7 @@ export default function Project() {
             prev[source.droppableId].items.splice(source.index, 1);
             prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
             return prev;
-        })
+        });
     };
 
     const closeDialog = () => {
