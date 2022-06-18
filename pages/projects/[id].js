@@ -13,8 +13,10 @@ export default function Project() {
     const { id } = router.query;
     const { project, loading } = useProject(id);
     const [isDialogOpened, setIsDialogOpened] = useState(false);
+    const [isCreateColumnDialogOpened, setIsCreateColumnDialogOpened] = useState(false);
     const [taskName, setTaskName] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
+    const [columnName, setColumnName] = useState('');
 
     const exampleCards = [
         {
@@ -79,6 +81,15 @@ export default function Project() {
         setIsDialogOpened(true);
     }
 
+    const closeCreateColumnDialog = () => {
+        setColumnName('');
+        setIsCreateColumnDialogOpened(false);
+    }
+
+    const openCreateColumnDialog = () => {
+        setIsCreateColumnDialogOpened(true);
+    }
+
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
     return (
@@ -101,7 +112,14 @@ export default function Project() {
                                 <p>Member Ids: {project.member_ids}</p>
                                 <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
                             </div>
-                            <button>
+                            <Dialog isOpened={isCreateColumnDialogOpened} closeDialog={closeCreateColumnDialog}>
+                                <div className={styles['create-column-dialog']}>
+                                    <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)} />
+                                    <button onClick={closeCreateColumnDialog}>Create</button>
+                                    <button onClick={closeCreateColumnDialog}>Close</button>
+                                </div>
+                            </Dialog>
+                            <button onClick={openCreateColumnDialog}>
                                 New Column
                                 <AiOutlinePlusCircle />
                             </button>
