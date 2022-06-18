@@ -8,6 +8,8 @@ import _ from 'lodash';
 import { v4 } from 'uuid';
 import Dialog from '../../components/Dialog';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setColumns } from '../../redux/slices/projectSlice';
 
 export default function Project() {
     const router = useRouter();
@@ -18,6 +20,8 @@ export default function Project() {
     const [taskName, setTaskName] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
     const [columnName, setColumnName] = useState('');
+    const dispatch = useDispatch();
+    const { columns } = useSelector(state => state.project);
 
     const exampleCards = [
         {
@@ -122,14 +126,14 @@ export default function Project() {
             try {
                 response = await axios.get(`${API_URL}/columns?project_id=${id}`);
                 raw_columns = response.data.raw_columns;
-                // TODO: set state
+                dispatch(setColumns(raw_columns));
             } catch (error) {
                 console.log(error);
             }
         }
         getColumns();
-    }, [id]);
-
+    }, [id, dispatch]);
+    console.log(columns);
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
     return (
