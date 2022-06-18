@@ -111,7 +111,7 @@ export default function Project() {
         }
         getColumns();
         if (columns[0]) setState(columns[0].raw_columns);
-    }, [dispatch, id]);
+    }, [dispatch, id, columns]);
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
