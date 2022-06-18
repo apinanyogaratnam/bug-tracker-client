@@ -4,7 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Project.module.css';
-import _ from 'lodash';
+import _, { set } from 'lodash';
 import { v4 } from 'uuid';
 import Dialog from '../../components/Dialog';
 import axios from 'axios';
@@ -71,11 +71,9 @@ export default function Project() {
 
     const createNewTask = async (column_id, column_column_id) => {
         const API_URL = process.env.NEXT_PUBLIC_API_URL;
-        let response;
         try {
-            response = await axios.post(`${API_URL}/column/${column_id}/${column_column_id}`);
-            let raw_columns = response.data.raw_columns;
-            // TODO: update state
+            const { data } = await axios.put(`${API_URL}/column/${column_id}/${column_column_id}`);
+            dispatch(setColumns(data.raw_columns));
         } catch (error) {
             console.log(error);
             alert('Error creating task');
