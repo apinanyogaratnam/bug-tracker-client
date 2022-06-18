@@ -29,13 +29,25 @@ export default function Project() {
         if (!destination) return;
         if (destination.index === source.index && destination.droppableId === source.droppableId) return;
         const itemCopy = {...state[source.droppableId].items[source.index]};
-        setState(prev => {
-            prev = structuredClone(prev);
-            prev[source.droppableId].items.splice(source.index, 1);
-            prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
-            return prev;
-        });
+
+        let prev = structuredClone(state);
+        prev[source.droppableId].items.splice(source.index, 1);
+        prev[destination.droppableId].items.splice(destination.index, 0, itemCopy);
+
+        setState(prev);
+
+        updateItemChange(prev);
     };
+
+    const updateItemChange = async (raw_columns) => {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+        try {
+            const { data } = await axios.patch(`${API_URL}/column/${column_id}`, raw_columns);
+            dispatch(setColumns(data.raw_columns));
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const closeDialog = () => {
         setTaskName('');
@@ -145,8 +157,9 @@ export default function Project() {
                                                         {(provided) => (
                                                             <div className={styles['droppable-column']} ref={provided.innerRef } {...provided.droppableProps}>
                                                                 {data.items.map((el, index) => {
+                                                                    let draggableId = `${key}-${index}`;
                                                                     return (
-                                                                        <Draggable key={el.id} index={index} draggableId={el.id}>
+                                                                        <Draggable key={el.id} index={index} draggableId={draggableId}>
                                                                             {(provided) => {
                                                                                 return (
                                                                                     <div className={styles['column-item']} ref={provided.innerRef} {...provided.draggableProps}>
