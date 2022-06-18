@@ -6,11 +6,15 @@ import { useState } from 'react';
 import styles from '../../styles/Project.module.css';
 import _ from 'lodash';
 import { v4 } from 'uuid';
+import Dialog from '../../components/Dialog';
 
 export default function Project() {
     const router = useRouter();
     const { id } = router.query;
     const { project, loading } = useProject(id);
+    const [isDialogOpened, setIsDialogOpened] = useState(false);
+    const [taskName, setTaskName] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
 
     const exampleCards = [
         {
@@ -65,6 +69,16 @@ export default function Project() {
         })
     };
 
+    const closeDialog = () => {
+        setTaskName('');
+        setTaskDescription('');
+        setIsDialogOpened(false);
+    }
+
+    const openDialog = () => {
+        setIsDialogOpened(true);
+    }
+
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
     return (
@@ -111,7 +125,16 @@ export default function Project() {
                                                                         </Draggable>
                                                                     )
                                                                 })}
-                                                                <button className={styles['add-task']}>
+                                                                <Dialog isOpened={isDialogOpened} closeDialog={closeDialog}>
+                                                                    <div className={styles['create-task-dialog']}>
+                                                                        <p>Add a new item</p>
+                                                                        <input value={taskName} type="text" onChange={(e) => setTaskName(e.target.value)} />
+                                                                        <input value={taskDescription} type="text" onChange={(e) => setTaskDescription(e.target.value)} />
+                                                                        <button onClick={closeDialog}>Add</button>
+                                                                        <button onClick={closeDialog}>close</button>
+                                                                    </div>
+                                                                </Dialog>
+                                                                <button className={styles['add-task']} onClick={openDialog}>
                                                                     <AiOutlinePlusCircle />
                                                                 </button>
                                                                 {provided.placeholder}

@@ -41,3 +41,15 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.create-task-dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 25%;
+    height: 25%;
+    margin-top: 20%;
+    background-color: #fff;
+}
