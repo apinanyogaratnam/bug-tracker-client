@@ -22,33 +22,6 @@ export default function Project() {
     const [columnName, setColumnName] = useState('');
     const dispatch = useDispatch();
     const { columns } = useSelector(state => state.project);
-
-    const exampleCards = [
-        {
-            id: 1,
-            title: 'Bug 1',
-        },
-        {
-            id: 2,
-            title: 'Bug 2',
-        },
-        {
-            id: 3,
-            title: 'Bug 3',
-        },
-    ]
-
-    const item = {
-        id: v4(),
-        name: 'an item',
-    }
-
-    const item2 = {
-        id: v4(),
-        name: 'an item',
-    }
-
-    const [cards, updateCards] = useState(exampleCards);
     const [state, setState] = useState({});
 
     const handleOnDragEnd = ({ destination, source }) => {
