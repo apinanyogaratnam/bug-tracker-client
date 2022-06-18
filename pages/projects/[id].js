@@ -21,7 +21,7 @@ export default function Project() {
     const [taskDescription, setTaskDescription] = useState('');
     const [columnName, setColumnName] = useState('');
     const dispatch = useDispatch();
-    const { columns } = useSelector(state => state.project);
+    const { columns, column_id } = useSelector(state => state.project);
     const [state, setState] = useState({});
 
     const handleOnDragEnd = ({ destination, source }) => {
@@ -66,6 +66,7 @@ export default function Project() {
             console.log(error);
             alert('Error creating column');
         }
+        closeCreateColumnDialog();
     }
 
     const createNewTask = async (column_id, column_column_id) => {
@@ -123,7 +124,7 @@ export default function Project() {
                             <Dialog isOpened={isCreateColumnDialogOpened} closeDialog={closeCreateColumnDialog}>
                                 <div className={styles['create-column-dialog']}>
                                     <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)} />
-                                    <button onClick={createNewColumn}>Create</button>
+                                    <button onClick={() => createNewColumn(column_id)}>Create</button>
                                     <button onClick={closeCreateColumnDialog}>Close</button>
                                 </div>
                             </Dialog>
