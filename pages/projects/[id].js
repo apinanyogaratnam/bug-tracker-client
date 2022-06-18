@@ -99,7 +99,7 @@ export default function Project() {
         }
         getColumns();
         if (columns[0]) setState(columns[0].raw_columns);
-    }, [dispatch, id]);
+    }, [dispatch, id, columns]);
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
@@ -163,7 +163,7 @@ export default function Project() {
                                                                         <p>Add a new item</p>
                                                                         <input value={taskName} type="text" onChange={(e) => setTaskName(e.target.value)} />
                                                                         <input value={taskDescription} type="text" onChange={(e) => setTaskDescription(e.target.value)} />
-                                                                        <button onClick={() => createNewTask(column_id, key)}>Add</button>
+                                                                        <button onClick={() => createNewTask(column_id, openedColumnKey)}>Add</button>
                                                                         <button onClick={closeDialog}>close</button>
                                                                     </div>
                                                                 </Dialog>
