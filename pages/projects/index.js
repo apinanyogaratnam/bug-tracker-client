@@ -57,7 +57,7 @@ export default function Projects() {
                     </div>
                 </div>
             )}
-            <a href="/api/auth/logout">Logout</a>
+            <Link href="/api/auth/logout">Logout</Link>
         </div>
     );
 }
