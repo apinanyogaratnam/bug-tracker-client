@@ -111,7 +111,7 @@ export default function Project() {
         }
         getColumns();
         if (columns[0]) setState(columns[0].raw_columns);
-    }, [dispatch, id, columns]);
+    }, [dispatch, id]);
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
@@ -157,7 +157,7 @@ export default function Project() {
                                                         {(provided) => (
                                                             <div className={styles['droppable-column']} ref={provided.innerRef } {...provided.droppableProps}>
                                                                 {data.items.map((el, index) => {
-                                                                    let draggableId = `${key}-${index}`;
+                                                                    let draggableId = `${key}-${index}-${el.id}`;
                                                                     return (
                                                                         <Draggable key={el.id} index={index} draggableId={draggableId}>
                                                                             {(provided) => {
