@@ -78,6 +78,7 @@ export default function Project() {
             console.log(error);
             alert('Error creating task');
         }
+        closeDialog();
     }
 
     useEffect(() => {
