@@ -7,6 +7,7 @@ import styles from '../../styles/Project.module.css';
 import _ from 'lodash';
 import { v4 } from 'uuid';
 import Dialog from '../../components/Dialog';
+import axios from 'axios';
 
 export default function Project() {
     const router = useRouter();
@@ -88,6 +89,30 @@ export default function Project() {
 
     const openCreateColumnDialog = () => {
         setIsCreateColumnDialogOpened(true);
+    }
+
+    const createNewColumn = async (column_id) => {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+        let response;
+        try {
+            response = await axios.post(`${API_URL}/column/${column_id}`);
+            raw_columns = response.data.raw_columns;
+            // TODO: update state
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const createNewTask = async (column_id, column_column_id) => {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+        let response;
+        try {
+            response = await axios.post(`${API_URL}/column/${column_id}/${column_column_id}`);
+            raw_columns = response.data.raw_columns;
+            // TODO: update state
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
