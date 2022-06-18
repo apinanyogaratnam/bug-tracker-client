@@ -49,20 +49,7 @@ export default function Project() {
     }
 
     const [cards, updateCards] = useState(exampleCards);
-    const [state, setState] = useState({
-        "todo": {
-            "title": "To Do",
-            "items": [item],
-        },
-        "inProgress": {
-            "title": "In Progress",
-            "items": [item2],
-        },
-        "done": {
-            "title": "Done",
-            "items": [],
-        },
-    });
+    const [state, setState] = useState({});
 
     const handleOnDragEnd = ({ destination, source }) => {
         if (!destination) return;
@@ -132,8 +119,9 @@ export default function Project() {
             }
         }
         getColumns();
-    }, [id, dispatch]);
-    console.log(columns);
+        if (columns[0]) setState(columns[0].raw_columns);
+    }, [id, columns, dispatch]);
+
     if (!project) return <p>Currently experiencing issues. Please check again soon.</p>;
 
     return (
