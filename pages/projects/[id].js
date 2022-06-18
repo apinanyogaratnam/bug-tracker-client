@@ -64,6 +64,7 @@ export default function Project() {
             // TODO: update state
         } catch (error) {
             console.log(error);
+            alert('Error creating column');
         }
     }
 
