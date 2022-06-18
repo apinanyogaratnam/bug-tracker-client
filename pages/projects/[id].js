@@ -125,9 +125,8 @@ export default function Project() {
             try {
                 console.log('fetching url: ', `${API_URL}/columns?project_id=${id}`);
                 const { data } = await axios.get(`${API_URL}/columns?project_id=${id}`);
-                let raw_columns = data.raw_columns;
-                console.log('fetched raw columns', raw_columns);
-                dispatch(setColumns(raw_columns));
+                console.log('fetched raw columns', data);
+                dispatch(setColumns(data));
             } catch (error) {
                 console.log(error);
             }
