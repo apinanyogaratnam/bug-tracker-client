@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import useProject from '../../components/hooks/useProject';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { useState } from 'react';
 import styles from '../../styles/Project.module.css';
 import _ from 'lodash';
@@ -110,6 +111,9 @@ export default function Project() {
                                                                         </Draggable>
                                                                     )
                                                                 })}
+                                                                <button className={styles['add-task']}>
+                                                                    <AiOutlinePlusCircle />
+                                                                </button>
                                                                 {provided.placeholder}
                                                             </div>
                                                         )}

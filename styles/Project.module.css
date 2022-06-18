@@ -29,3 +29,15 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.add-task {
+    width: 95%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
