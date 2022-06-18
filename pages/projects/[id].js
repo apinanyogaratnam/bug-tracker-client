@@ -9,7 +9,7 @@ import { v4 } from 'uuid';
 import Dialog from '../../components/Dialog';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { setColumns } from '../../redux/slices/projectSlice';
+import { setColumns, setColumnId } from '../../redux/slices/projectSlice';
 
 export default function Project() {
     const router = useRouter();
@@ -87,6 +87,7 @@ export default function Project() {
                 const { data } = await axios.get(`${API_URL}/columns?project_id=${id}`);
                 console.log('fetched raw columns', data);
                 dispatch(setColumns(data));
+                dispatch(setColumnId(data[0].column_id));
             } catch (error) {
                 console.log(error);
             }
@@ -120,7 +121,7 @@ export default function Project() {
                             <Dialog isOpened={isCreateColumnDialogOpened} closeDialog={closeCreateColumnDialog}>
                                 <div className={styles['create-column-dialog']}>
                                     <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)} />
-                                    <button onClick={closeCreateColumnDialog}>Create</button>
+                                    <button onClick={createNewColumn}>Create</button>
                                     <button onClick={closeCreateColumnDialog}>Close</button>
                                 </div>
                             </Dialog>
