@@ -100,7 +100,7 @@ export default function Project() {
         let response;
         try {
             response = await axios.post(`${API_URL}/column/${column_id}`);
-            raw_columns = response.data.raw_columns;
+            let raw_columns = response.data.raw_columns;
             // TODO: update state
         } catch (error) {
             console.log(error);
@@ -112,7 +112,7 @@ export default function Project() {
         let response;
         try {
             response = await axios.post(`${API_URL}/column/${column_id}/${column_column_id}`);
-            raw_columns = response.data.raw_columns;
+            let raw_columns = response.data.raw_columns;
             // TODO: update state
         } catch (error) {
             console.log(error);
@@ -122,10 +122,11 @@ export default function Project() {
     useEffect(() => {
         const getColumns = async () => {
             const API_URL = process.env.NEXT_PUBLIC_API_URL;
-            let response;
             try {
-                response = await axios.get(`${API_URL}/columns?project_id=${id}`);
-                raw_columns = response.data.raw_columns;
+                console.log('fetching url: ', `${API_URL}/columns?project_id=${id}`);
+                const { data } = await axios.get(`${API_URL}/columns?project_id=${id}`);
+                let raw_columns = data.raw_columns;
+                console.log('fetched raw columns', raw_columns);
                 dispatch(setColumns(raw_columns));
             } catch (error) {
                 console.log(error);
