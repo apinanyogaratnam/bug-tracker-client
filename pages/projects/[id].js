@@ -138,7 +138,7 @@ export default function Project() {
                                         {_.map(state, (data, key) => {
                                             return (
                                                 <div className={styles['column-container']} key={key}>
-                                                    <h3>{data.title}</h3>
+                                                    <h3>{data.name}</h3>
                                                     <Droppable droppableId={key}>
                                                         {(provided) => (
                                                             <div className={styles['droppable-column']} ref={provided.innerRef } {...provided.droppableProps}>
