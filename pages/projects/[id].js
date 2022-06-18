@@ -57,11 +57,11 @@ export default function Project() {
 
     const createNewColumn = async (column_id) => {
         const API_URL = process.env.NEXT_PUBLIC_API_URL;
-        let response;
         try {
-            response = await axios.post(`${API_URL}/column/${column_id}`);
-            let raw_columns = response.data.raw_columns;
-            // TODO: update state
+            const { data } = await axios.put(`${API_URL}/column/${column_id}`, {
+                column_name: columnName,
+            });
+            dispatch(setColumns(data.raw_columns));
         } catch (error) {
             console.log(error);
             alert('Error creating column');
@@ -86,9 +86,7 @@ export default function Project() {
         const getColumns = async () => {
             const API_URL = process.env.NEXT_PUBLIC_API_URL;
             try {
-                console.log('fetching url: ', `${API_URL}/columns?project_id=${id}`);
                 const { data } = await axios.get(`${API_URL}/columns?project_id=${id}`);
-                console.log('fetched raw columns', data);
                 dispatch(setColumns(data));
                 dispatch(setColumnId(data[0].column_id));
             } catch (error) {
