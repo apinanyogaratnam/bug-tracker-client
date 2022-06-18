@@ -23,6 +23,7 @@ export default function Project() {
     const dispatch = useDispatch();
     const { columns, column_id } = useSelector(state => state.project);
     const [state, setState] = useState({});
+    const [openedColumnKey, setOpenedColumnKey] = useState(null);
 
     const handleOnDragEnd = ({ destination, source }) => {
         if (!destination) return;
@@ -42,7 +43,8 @@ export default function Project() {
         setIsDialogOpened(false);
     }
 
-    const openDialog = () => {
+    const openDialog = (key) => {
+        setOpenedColumnKey(key);
         setIsDialogOpened(true);
     }
 
@@ -71,7 +73,6 @@ export default function Project() {
 
     const createNewTask = async (column_id, column_column_id) => {
         const API_URL = process.env.NEXT_PUBLIC_API_URL;
-        console.log('column column id', column_column_id);
         try {
             const { data } = await axios.put(`${API_URL}/column/${column_id}/${column_column_id}`, {
                 name: taskName,
@@ -166,7 +167,7 @@ export default function Project() {
                                                                         <button onClick={closeDialog}>close</button>
                                                                     </div>
                                                                 </Dialog>
-                                                                <button className={styles['add-task']} onClick={openDialog}>
+                                                                <button className={styles['add-task']} onClick={() => openDialog(key)}>
                                                                     <AiOutlinePlusCircle />
                                                                 </button>
                                                                 {provided.placeholder}
