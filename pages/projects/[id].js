@@ -101,6 +101,10 @@ export default function Project() {
                                 <p>Member Ids: {project.member_ids}</p>
                                 <p>Created at: {new Date(project.created_at * 1000).toLocaleDateString()}</p>
                             </div>
+                            <button>
+                                Create Project
+                                <AiOutlinePlusCircle />
+                            </button>
                             <div>
                                 <DragDropContext onDragEnd={handleOnDragEnd}>
                                     <div className={styles['columns-container']}>
